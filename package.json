@@ -1,0 +1,24 @@
+{
+  "name": "droopy-events",
+  "version": "0.0.0",
+  "description": "Event Aggregator Object",
+  "main": "EventAggregator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/droopytersen/droopy-events"
+  },
+  "keywords": [
+    "droopy",
+    "events",
+    "pubsub"
+  ],
+  "author": "Andrew Petersen",
+  "license": "NONE",
+  "bugs": {
+    "url": "https://github.com/droopytersen/droopy-events/issues"
+  },
+  "homepage": "https://github.com/droopytersen/droopy-events"
+}
