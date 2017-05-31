@@ -1,19 +1,19 @@
-var EventAggregator = function(instanceId) {
-	this.instanceId = instanceId || '';
+var EventAggregator = function(options) {
+	this.options = options || { instanceId: '' };
 	this.eventKeys = {};
 	this.lastSubscriptionId = -1;
 };
 
 EventAggregator.prototype._getCompoundKey = function(key) {
-	return this.instanceId ? this.instanceId + '_' + key : key;
+	return this.options.instanceId ? this.options.instanceId + '_' + key : key;
 }
 
 EventAggregator.prototype.setInstanceId = function(instanceId) {
-	this.instanceId = instanceId || '';
+	this.options.instanceId = instanceId || '';
 }
 
 EventAggregator.prototype.getInstanceId = function() {
-	return this.instanceId;
+	return this.options.instanceId;
 }
 
 EventAggregator.prototype.on = function(key, callback) {
