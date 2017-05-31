@@ -1,6 +1,6 @@
 {
   "name": "droopy-events",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Event Aggregator Object",
   "main": "EventAggregator.js",
   "scripts": {
