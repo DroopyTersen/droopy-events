@@ -4,8 +4,20 @@ var EventAggregator = function(instanceId) {
 	this.lastSubscriptionId = -1;
 };
 
+EventAggregator.prototype._getCompoundKey = function(key) {
+	return this.instanceId ? this.instanceId + '_' + key : key;
+}
+
+EventAggregator.prototype.setInstanceId = function(instanceId) {
+	this.instanceId = instanceId || '';
+}
+
+EventAggregator.prototype.getInstanceId = function() {
+	return this.instanceId;
+}
+
 EventAggregator.prototype.on = function(key, callback) {
-	var compoundKey = this.instanceId ? this.instanceId + key : key;
+	var compoundKey = this._getCompoundKey(key);	
 	if (typeof callback === "function") {
 		if (!this.eventKeys[compoundKey]) {
 			this.eventKeys[compoundKey] = {
@@ -21,7 +33,7 @@ EventAggregator.prototype.on = function(key, callback) {
 };
 
 EventAggregator.prototype.off = function(key, tokenOrCallback) {
-	var compoundKey = this.instanceId ? this.instanceId + key : key;	
+	var compoundKey = this._getCompoundKey(key);	
 	if (typeof tokenOrCallback === 'function') {
 		//Callback reference was passed in so find the subscription with the matching function
 		if (this.eventKeys[compoundKey]) {
@@ -49,7 +61,7 @@ EventAggregator.prototype.off = function(key, tokenOrCallback) {
 
 EventAggregator.prototype.trigger = function(key) {
 	var self = this;
-	var compoundKey = this.instanceId ? this.instanceId + key : key;		
+	var compoundKey = this._getCompoundKey(key);	
 	if (self.eventKeys[compoundKey]) {
 		var values = Array.prototype.slice.call(arguments, 1);
 		//If passing less than values pass them individually
